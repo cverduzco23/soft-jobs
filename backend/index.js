@@ -24,7 +24,7 @@ app.post("/login", verificarCredencialesMiddleware, async (req, res) => {
     const { email, password } = req.body;
     await verificarCredenciales(email, password);
     const token = jwt.sign({ email }, "az_AZ", { expiresIn: 30 }); // 30 segundos
-    res.send(token);
+    res.json({ token });
   } catch (error) {
     res.status(error.code || 500).send(error);
   }
